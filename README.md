@@ -1,3 +1,10 @@
+# Vue-toasted - Open Law Library version
+[Open Law Library](http://www.openlawlib.org/) version of Vue Toasted differs from official version only in regards to SCSS styles. While original plugin uses its own styles, our styles are in our Application themes and are customized from there.
+
+Main branch in this repo is `oll` and that one is used in our `package.json`. We will use `master` branch only to synchronize code updates from original repository and then merge them to `oll`.
+
+---
+
 <p align="center">
     <a href="https://github.com/shakee93/vue-toasted" target="_blank">
     <img width="250"src="https://freshpixl.com/vue-toasted.png?new">
@@ -26,25 +33,30 @@ Checkout the <a target="_blank" href="https://shakee93.github.io/vue-toasted/"> 
 
 #### Menu
 
-- [Installation](#installation)
-    - [Npm](#install-using-npm)
-    - [Yarn](#install-using-yarn)
-    - [Direct Usage](#direct-usage-with-html)
-    - [Nuxt](#nuxt--officially-uses-vue-toasted-for-their-toast-module)
-- [Usage](#usage)
-    - [Basic Usage](#usage)
-    - [Actions](#actions--fire)
-    - [Icons](#icons-fire)
-    - [Standalone Usage](#browsers-support)
-- [Api](#api)
+- [Vue-toasted - Open Law Library version](#vue-toasted---open-law-library-version)
+  - [Introduction](#introduction)
+      - [Interactive Demo](#interactive-demo)
+      - [Menu](#menu)
+  - [Installation](#installation)
+      - [Install using npm](#install-using-npm)
+      - [Install using yarn](#install-using-yarn)
+      - [Direct usage with html](#direct-usage-with-html)
+      - [Nuxt 💓 Officially uses `vue-toasted` for their toast module.](#nuxt-%F0%9F%92%93-officially-uses-vue-toasted-for-their-toast-module)
+  - [Usage](#usage)
+    - [Icons :fire:](#icons-fire)
+    - [Actions :fire:](#actions-fire)
+        - [Examples](#examples)
+  - [API](#api)
     - [Options](#options)
     - [Methods](#methods)
     - [Toast Object](#toast-object)
-    - [Custom Toast Registration](#custom-toast-registration)
     - [Vue Router](#vue-router)
-- [Browser Support](#browsers-support)
-- [Mobile Responsiveness](#mobile-responsiveness)
-- [Credits](#credits)
+    - [Custom Toast Registration](#custom-toast-registration)
+        - [Simple Example](#simple-example)
+        - [Advanced Example](#advanced-example)
+      - [Browsers support](#browsers-support)
+    - [Mobile Responsiveness](#mobile-responsiveness)
+    - [Credits](#credits)
 
 
 ## Installation
