@@ -9,7 +9,7 @@ Main branch in this repo is `oll` and that one is used in our `package.json`. We
     <a href="https://github.com/shakee93/vue-toasted" target="_blank">
     <img width="250"src="https://freshpixl.com/vue-toasted.png?new">
     </a>
-</p> 
+</p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/vue-toasted"><img src="https://img.shields.io/npm/v/vue-toasted.svg?style=flat-square"/> <img src="https://img.shields.io/npm/dm/vue-toasted.svg?style=flat-square"/></a>
@@ -17,11 +17,13 @@ Main branch in this repo is `oll` and that one is used in our `package.json`. We
   <a href="https://vuejs.org/"><img src="https://img.shields.io/badge/vue-2.x-brightgreen.svg?style=flat-square"/></a>
   <a href="https://github.com/shakee93/vue-toasted/"><img src="http://img.badgesize.io/shakee93/vue-toasted/master/dist/vue-toasted.min.js?compression=gzip&style=flat-square"/></a>
   <a href="http://packagequality.com/#?package=vue-toasted"><img src="http://npm.packagequality.com/shield/vue-toasted.svg?style=flat-square"/></a>
+  <a href="https://gitpod.io/from-referrer/"><img src="https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod" alt="Gitpod Ready-to-Code">
+  </a>
  </p>
 
 ## Introduction
 
-Vue Toasted is One of the Best Toast plugin available for VueJS. it is used by VueJS, Laravel, NuxtJS and trusted by many more organizations it is responsive, touch compatible, easy to use, attractive and feature rich with icons, actions etc...
+Vue Toasted is one of the best toast plugins available for VueJS. It's used by VueJS, Laravel, NuxtJS and trusted by many more organizations. It's responsive, touch compatible, easy to use, attractive and feature rich with icons, actions, and more!
 
 #### Interactive Demo
 
@@ -91,16 +93,21 @@ installation guide 👉  [@nuxtjs/toast](https://github.com/nuxt-community/modul
 
 ## Usage
 
-It is simple. couple of lines all what you need.
+It's simple. A couple of lines is all you need.
 
 ```javascript
 // register the plugin on vue
 import Toasted from 'vue-toasted';
 
+// or you can use it with require
+var Toasted = require('vue-toasted').default
+
 Vue.use(Toasted)
 
 // you can also pass options, check options reference below
 Vue.use(Toasted, Options)
+
+;
 
 ```
 
@@ -122,7 +129,7 @@ All Good Now you have this cool toast in your project..
 {
     // pass the icon name as string
     icon : 'check'
-    
+
     // or you can pass an object
     icon : {
         name : 'watch',
@@ -136,11 +143,11 @@ All Good Now you have this cool toast in your project..
     <a href="https://github.com/shakee93/vue-toasted" target="_blank">
     <img width="300" src="https://shakee93.github.io/vue-toasted/assets/images/action-preview.jpg">
     </a>
-</p> 
+</p>
 <p>You can have single or multiple actions in the toast. take a look at the example below</p>
 <p>Check below Vue Router section for router integration</p>
 
-**Parameters**|**Type's**|**Default**|**Description**
+**Parameter**|**Type**|**Default**|**Description**
 -----|-----|-----|-----
 text*|String|-| name of action
 href|String|`null`| url of action
@@ -172,7 +179,7 @@ onClick|Function(e,toastObject) |`null`|  onClick Function of action
         {
             text : 'Undo',
             // router navigation
-            push : { 
+            push : {
             	name : 'somewhere',
             	// this will prevent toast from closing
             	dontClose : true
@@ -189,10 +196,11 @@ onClick|Function(e,toastObject) |`null`|  onClick Function of action
 
 below are the options you can pass to create a toast
 
-**Option**|**Type's**|**Default**|**Description**
+**Option**|**Type**|**Default**|**Description**
 -----|-----|-----|-----
 position|String|'top-right'|Position of the toast container <br> **['top-right', 'top-center', 'top-left', 'bottom-right', 'bottom-center', 'bottom-left']**
 duration|Number|null|Display time of the toast in millisecond
+keepOnHover|Boolean|false|When mouse is over a toast's element, the corresponding `duration` timer is paused until the cursor leaves the element
 action|Object, Array|null|Add single or multiple actions to toast  [explained here](#actions--fire)
 fullWidth|Boolean|false|Enable Full Width
 fitToScreen|Boolean|false|Fits to Screen on Full Width
@@ -215,13 +223,13 @@ Methods available on Toasted...
 Vue.toasted.show( 'my message', { /* some option */ })
 ```
 
-**Method**|**Parameter's**|**Description**
+**Method**|**Parameters**|**Description**
 -----|-----|-----
 show|message, options| show a toast with default style
 success|message, options| show a toast with success style
 info|message, options| show a toast with info style
 error|message, options | show a toast with error style
-register | name, message, options | register your own toast with options [explained here](#custom-toast-registration) 
+register | name, message, options | register your own toast with options [explained here](#custom-toast-registration)
 clear | - | clear all toasts
 
 ### Toast Object
@@ -276,7 +284,7 @@ You can register your own toasts like below and it will be available all over th
 
 `Toasted.register` methods api details...
 
-**Parameters**|**Type's**|**Default**|**Description**
+**Parameter**|**Type**|**Default**|**Description**
 -----|-----|-----|-----
 name*|String|-| name of your toast
 message*|String/Function(payload) |-|  Toast Body Content
@@ -284,7 +292,7 @@ options|String/Object| {} | Toast Options as Object or either of these strings *
 
 Take a look at the below examples
 
-##### Simple Example 
+##### Simple Example
 ```javascript
 import Toasted from 'vue-toasted';
 Vue.use(Toasted);
@@ -304,7 +312,7 @@ After Registering your toast you can easily access it in the vue component like 
 this.$toasted.global.my_app_error();
 ```
 
-##### Advanced Example 
+##### Advanced Example
 
 You can also pass message as a function. which will give you more power.
 Lets think you need to pass a custom message to the error notification we built above.
@@ -329,12 +337,12 @@ let options = {
 // register the toast with the custom message
 Vue.toasted.register('my_app_error',
     (payload) => {
-		
+
         // if there is no message passed show default message
         if(! payload.message) {
     	    return "Oops.. Something Went Wrong.."
         }
-		
+
         // if there is a message show it with the message
         return "Oops.. " + payload.message;
     },
@@ -355,6 +363,11 @@ Please Report If You have Found any Issues.
 
 On Mobile Toasts will be on full width. according to the position the toast will either be on top or bottom.
 
+### Contribute using the one-click online setup.
+
+Contribute to Vue Toasted using a fully featured online development environment that will automatically: clone the repo, install the dependencies and start the webserver.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/from-referrer/)
 
 ### Credits
 

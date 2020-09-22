@@ -43,6 +43,9 @@ const parseOptions = function (options) {
 	// toast duration
 	options.duration = options.duration || null;
 
+	// keep toast open on mouse over
+	options.keepOnHover = options.keepOnHover || false;
+
 	// normal type will allow the basic color
 	options.theme = options.theme || "toasted-primary";
 
@@ -199,6 +202,7 @@ const createIcon = (options, toast) => {
 	if (options.icon) {
 
 		let iel = document.createElement('i');
+		iel.setAttribute('aria-hidden', 'true');
 
 		switch (options.iconPack) {
 			case 'fontawesome' :
@@ -435,16 +439,7 @@ export default function (instance, message, options) {
 	_instance = instance;
 
 	options = parseOptions(options);
-	let container = document.getElementById(_instance.id);
-
-	// Create toast container if it does not exist
-	if (container === null) {
-		// create notification container
-		container = document.createElement('div');
-		container.id = _instance.id;
-
-		document.body.appendChild(container);
-	}
+	const container = _instance.container;
 
 	options.containerClass.unshift('toasted-container');
 
@@ -474,7 +469,8 @@ export default function (instance, message, options) {
 	let timeLeft = options.duration;
 	let counterInterval;
 	if (timeLeft !== null) {
-		counterInterval = setInterval(function () {
+
+		const createInterval = () => setInterval(function () {
 			if (newToast.parentNode === null)
 				window.clearInterval(counterInterval);
 
@@ -500,6 +496,18 @@ export default function (instance, message, options) {
 				window.clearInterval(counterInterval);
 			}
 		}, 20);
+
+		counterInterval = createInterval();
+
+		// Toggle interval on hover
+		if (options.keepOnHover) {
+			newToast.addEventListener('mouseover', () => {
+				window.clearInterval(counterInterval);
+			});
+			newToast.addEventListener('mouseout', () => {
+				counterInterval = createInterval();
+			});
+		}
 	}
 
 	return toastObject(newToast, _instance);
